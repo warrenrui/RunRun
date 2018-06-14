@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Customer isAudlt="false" id="100">
+    <age>23</age>
+    <name>customer</name>
+    <sex>female</sex>
+</Customer>
