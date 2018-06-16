@@ -31,7 +31,7 @@ public class Customer {
         while (rentalsEnums.hasMoreElements()) {
             double thisAmount = 0;
             Rental each = (Rental) rentalsEnums.nextElement();
-            // determin amounts for each line
+            // determine amounts for each line
             switch (each.getMovie().getPriceCode()) {
                 case Movie.REGULAR:
                     thisAmount += 2;
@@ -48,6 +48,7 @@ public class Customer {
                         thisAmount += (each.getDaysRented() - 3) * 1.5;
                     }
                     break;
+                default:
             }
             // add frequent renter points
             frequentRenterPoints++;
