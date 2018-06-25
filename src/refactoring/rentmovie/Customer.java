@@ -29,8 +29,8 @@ public class Customer {
         Enumeration<Rental> rentalsEnums = rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while (rentalsEnums.hasMoreElements()) {
-            double thisAmount = 0;
             Rental each = rentalsEnums.nextElement();
+            double thisAmount = 0;
             // determine amounts for each line
             switch (each.getMovie().getPriceCode()) {
                 case Movie.REGULAR:
