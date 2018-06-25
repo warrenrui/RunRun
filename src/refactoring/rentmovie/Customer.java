@@ -21,7 +21,7 @@ public class Customer {
 
 
     public String statement() {
-        double totalAmount = 0;
+
         /**
          * 常客积分
          */
@@ -32,13 +32,11 @@ public class Customer {
             Rental each = rentalsEnums.nextElement();
             frequentRenterPoints += each.getFrequentRenterPoints();
 
-
             // show figures for this rental
             result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount(each)) + "\n";
-            totalAmount += thisAmount(each);
         }
         // add footer lines
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
+        result += "Amount owed is " + String.valueOf(getTotalAmount()) + "\n";
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
 
 
@@ -47,6 +45,16 @@ public class Customer {
 
     private double thisAmount(Rental each) {
         return each.getThisAmount();
+    }
+
+    private double getTotalAmount() {
+        double totalAmount = 0;
+        Enumeration<Rental> rentalsEnums = rentals.elements();
+        while (rentalsEnums.hasMoreElements()) {
+            Rental each = rentalsEnums.nextElement();
+            totalAmount += thisAmount(each);
+        }
+        return totalAmount;
     }
 
 }
