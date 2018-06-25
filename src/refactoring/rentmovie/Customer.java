@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class Customer {
     private String name;
-    private Vector rentals = new Vector();
+    private Vector<Rental> rentals = new Vector<Rental>();
 
     public Customer(String name) {
         this.name = name;
@@ -26,7 +26,7 @@ public class Customer {
          * 常客积分
          */
         int frequentRenterPoints = 0;
-        Enumeration rentalsEnums = rentals.elements();
+        Enumeration<Rental> rentalsEnums = rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while (rentalsEnums.hasMoreElements()) {
             double thisAmount = 0;
@@ -42,7 +42,7 @@ public class Customer {
                 case Movie.NEW_RELEASE:
                     thisAmount += each.getDaysRented() * 3;
                     break;
-                case Movie.CHILDRENS:
+                case Movie.CHILDREN:
                     thisAmount += 1.5;
                     if (each.getDaysRented() > 3) {
                         thisAmount += (each.getDaysRented() - 3) * 1.5;
