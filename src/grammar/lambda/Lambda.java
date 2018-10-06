@@ -1,6 +1,7 @@
 package grammar.lambda;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lambda {
@@ -63,6 +64,23 @@ public class Lambda {
         final Runnable runnable1 = () -> System.out.println("run!");
         runnable1.run();
 
+
+        /**
+         * 使用lambda排序集合
+         */
+        String[] players = {"John", "Tom", "Warren", "Lucy"};
+        System.out.println("排序前：" + Arrays.toString(players));
+        Arrays.sort(players, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        Arrays.sort(players, (o1, o2) -> o1.compareTo(o2));
+        Arrays.sort(players, String::compareTo);
+        Arrays.sort(players, Comparator.naturalOrder());
+
+        System.out.println("排序后：" + Arrays.toString(players));
 
     }
 }
