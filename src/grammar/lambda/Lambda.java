@@ -79,7 +79,6 @@ public class Lambda {
         Arrays.sort(players, (o1, o2) -> o1.compareTo(o2));
         Arrays.sort(players, String::compareTo);
         Arrays.sort(players, Comparator.naturalOrder());
-
         System.out.println("排序后：" + Arrays.toString(players));
 
     }
