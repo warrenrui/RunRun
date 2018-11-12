@@ -1,5 +1,7 @@
 package grammar.lambda;
 
+import com.google.common.collect.Lists;
+
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -34,13 +36,14 @@ public class Lambda {
         /**
          * for 循环
          */
-        List<String> slogans = Arrays.asList("for the horde", "may the force be with you");
+        List<String> slogans = Arrays.asList("for the horde", "may the force be with you","fighter");
         for (String slogan : slogans) {
             System.out.println(slogan);
         }
         slogans.forEach((slogan) -> System.out.println(slogan + ","));
         slogans.forEach(System.out::println);
 
+        final List<List<String>> partition = Lists.partition(slogans, 2);
 
         /**
          * 匿名内部类
