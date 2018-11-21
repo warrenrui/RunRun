@@ -1,51 +1,45 @@
 package designPattern.future;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 public class FutureTaskTest {
 
     public static void main(String[] args) {
         Callable<String> task = new Callable<String>() {
             public String call() {
-                System.out.println("Sleep start.");
+                System.out.println(Thread.currentThread() + " Sleep start.");
                 try {
                     Thread.sleep(1000 * 3);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("Sleep end.");
+                System.out.println(Thread.currentThread() + " Sleep end.");
                 return "time=" + System.currentTimeMillis();
             }
         };
 
         // 直接使用Thread的方式执行
-        FutureTask<String> ft = new FutureTask<String>(task);
+        FutureTask<String> ft = new FutureTask<>(task);
         Thread t = new Thread(ft);
         t.start();
         try {
-            System.out.println("waiting execute result");
-            System.out.println("result = " + ft.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+            System.out.println(Thread.currentThread() + " waiting execute result");
+            System.out.println(Thread.currentThread() + " result = " + ft.get());
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
         // 使用Executors来执行
-        System.out.println("=========");
-        FutureTask<String> ft2 = new FutureTask<String>(task);
-        Executors.newSingleThreadExecutor().submit(ft2);
+        System.out.println(Thread.currentThread() + " =========");
+        final ExecutorService executorService = Executors.newSingleThreadExecutor();
+        final Future<?> future = executorService.submit(task);
         try {
-            System.out.println("waiting execute result");
-            System.out.println("result = " + ft2.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+            System.out.println(Thread.currentThread() + " waiting execute result");
+            System.out.println(Thread.currentThread() + " result = " + future.get());
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
+        executorService.shutdown();
 
     }
 }
