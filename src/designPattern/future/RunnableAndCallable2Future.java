@@ -39,58 +39,58 @@ public class RunnableAndCallable2Future {
          * 提交并执行任务，任务启动时返回了一个 Future对象，
          * 如果想得到任务执行的结果或者是异常可对这个Future对象进行操作
          */
-        Future<String> future1 = executor.submit(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                System.out.println(Thread.currentThread().getName() + "--callable.call");
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                return "result=task1";
-            }
-        });
-        try {
-            //
-            Thread.sleep(60000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        // 获得任务的结果，如果调用get方法，当前线程会等待任务执行完毕后才往下执行
-        try {
-            System.out.println(Thread.currentThread().getName() + "--task1: " + future1.get() + "阻塞等待Callable执行完毕，有返回值。");
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
+//        Future<String> future1 = executor.submit(new Callable<String>() {
+//            @Override
+//            public String call() throws Exception {
+//                System.out.println(Thread.currentThread().getName() + "--callable.call");
+//                try {
+//                    Thread.sleep(3000);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                return "result=task1";
+//            }
+//        });
+//        try {
+//            //
+//            Thread.sleep(60000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        // 获得任务的结果，如果调用get方法，当前线程会等待任务执行完毕后才往下执行
+//        try {
+//            System.out.println(Thread.currentThread().getName() + "--task1: " + future1.get() + "阻塞等待Callable执行完毕，有返回值。");
+//        } catch (InterruptedException | ExecutionException e) {
+//            e.printStackTrace();
+//        }
 
         /**
          * 3. 对Callable调用cancel可以对对该任务进行中断
          * 提交并执行任务，任务启动时返回了一个 Future对象，
          * 如果想得到任务执行的结果或者是异常可对这个Future对象进行操作
          */
-//        Future<String> future2 = executor.submit(new Callable<String>() {
-//            @Override
-//            public String call() throws Exception {
-//                try {
-//                    while (true) {
-//                        System.out.println(Thread.currentThread().getName() + "--task2 running.");
-//                        Thread.sleep(200);
-//                    }
-//                } catch (InterruptedException e) {
-//                    System.out.println(Thread.currentThread().getName() + "--Interrupted task2.");
-//                }
-//                return "task2=false";
-//            }
-//        });
-//
-//        // 等待5秒后，再停止第二个任务。因为第二个任务进行的是无限循环
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println(Thread.currentThread().getName() + "--task2 cancel: " + future2.cancel(true) + "--阻塞等待Callable执行，取消执行。");
+        Future<String> future2 = executor.submit(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                try {
+                    while (true) {
+                        System.out.println(Thread.currentThread().getName() + "--task2 running.");
+                        Thread.sleep(200);
+                    }
+                } catch (InterruptedException e) {
+                    System.out.println(Thread.currentThread().getName() + "--Interrupted task2.");
+                }
+                return "task2=false";
+            }
+        });
+
+        // 等待5秒后，再停止第二个任务。因为第二个任务进行的是无限循环
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + "--task2 cancel: " + future2.cancel(true) + "--阻塞等待Callable执行，取消执行。");
 
         /**
          * 4.用Callable时抛出异常则Future什么也取不到了
