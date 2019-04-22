@@ -5,7 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class TimeUtils {
-    final private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    final private static SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    final private static SimpleDateFormat SDF_TIME = new SimpleDateFormat("HH");
 
     /**
      * 字符串时间转换成时间戳
@@ -26,7 +27,7 @@ public class TimeUtils {
      * @throws ParseException
      */
     public static Date stringToDate(String value) throws ParseException {
-        return sdf.parse(value);
+        return SDF.parse(value);
     }
 
     /**
@@ -36,7 +37,7 @@ public class TimeUtils {
      * @return
      */
     public static String timestampToString(long timestamp) {
-        return sdf.format(new Date(timestamp));
+        return SDF.format(new Date(timestamp));
     }
 
 
@@ -45,6 +46,9 @@ public class TimeUtils {
         System.out.println(timestampToString(timeMillis));
         String time = "2019-4-19 19:43:23";
         System.out.println(toTimestamp(time));
+
+        final Date date = new Date();
+        System.out.println(SDF_TIME.format(date));
     }
 
 }
