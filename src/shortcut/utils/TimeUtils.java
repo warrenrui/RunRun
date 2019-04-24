@@ -44,10 +44,10 @@ public class TimeUtils {
     public static void main(String[] args) throws ParseException {
         final long timeMillis = 1555668137133L;
         System.out.println(timestampToString(timeMillis));
-        String time = "2019-4-19 19:43:23";
+        String time = "2019-4-19 01:43:23";
         System.out.println(toTimestamp(time));
 
-        final Date date = new Date();
+        final Date date = new Date(toTimestamp(time));
         System.out.println(SDF_TIME.format(date));
     }
 
