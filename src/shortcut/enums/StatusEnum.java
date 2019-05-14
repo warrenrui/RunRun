@@ -29,7 +29,7 @@ public enum StatusEnum {
     }
 
     public static StatusEnum getByCode(Integer code) {
-        return MAP.get(code) == null ? StatusEnum.getByCode(null) : MAP.get(code);
+        return MAP.get(code) == null ? NoMatch : MAP.get(code);
     }
 
     private Integer key;
