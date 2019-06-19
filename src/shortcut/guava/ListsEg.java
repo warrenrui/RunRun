@@ -14,6 +14,11 @@ public class ListsEg {
         peopleArrayList.add(new People("2"));
         peopleArrayList.add(new People("3"));
         /**
+         * list拆分成10个一组
+         */
+        final List<List<People>> partitionList = Lists.partition(peopleArrayList, 10);
+        System.out.println(partitionList.size());
+        /**
          * list中对象的某一属性，取出形成新的list
          */
         final List<String> idList = Lists.transform(peopleArrayList, new Function<People, String>() {
