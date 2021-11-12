@@ -12,7 +12,7 @@ public class testThreadLocal {
 
 class LockRunner1 extends Thread {
 
-    private Bank bank;
+    private final Bank bank;
 
     LockRunner1(Bank bank) {
         this.bank = bank;
@@ -24,7 +24,10 @@ class LockRunner1 extends Thread {
 
             bank.saveSyn(i);
             bank.saveInt(i);
-            System.out.println(Thread.currentThread().getName() + "----- ----- 有钱 " + bank.getAccountSyn() + "--" + bank.getAccountInt());
+            System.out.println(Thread.currentThread().getName() +
+                    "----- 线程隔离金额：" + bank.getAccountSyn() +
+                    "----- 线程共享金额：" + bank.getAccountInt() +
+                    "----- 线程隔离备注： " + bank.getNote());
         }
     }
 }
