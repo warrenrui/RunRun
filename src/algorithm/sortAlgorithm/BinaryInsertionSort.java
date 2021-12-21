@@ -1,4 +1,4 @@
-package sortAlgorithm;
+package algorithm.sortAlgorithm;
 
 public class BinaryInsertionSort {
     public static void main(String[] args) {

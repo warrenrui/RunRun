@@ -1,12 +1,4 @@
-package sortAlgorithm;
-
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutput;
-import java.io.DataOutputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+package algorithm.sortAlgorithm;
 
 public class QuickSort {
     public static void main(String[] args) {

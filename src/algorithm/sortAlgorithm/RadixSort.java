@@ -1,4 +1,4 @@
-package sortAlgorithm;
+package algorithm.sortAlgorithm;
 
 public class RadixSort {
     public static void sort(int[] number, int d) {
